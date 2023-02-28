@@ -65,21 +65,13 @@ fun main() {
 
     val solution = CourseScheduleKahnAlgorithm()
 
-//    val arr1 = solution.findOrder(numCourses1, prerequisites1)
-//
-//    for (value in arr1) {
-//        println(value)
-//    }
+    val arr1 = solution.findOrder(numCourses1, prerequisites1)
+    println(arr1.contentToString())
 
     val arr2 = solution.findOrder(numCourses2, prerequisites2)
+    println(arr2.contentToString())
 
-    for (value in arr2) {
-        println(value)
-    }
 
-//    val arr3 = solution.findOrder(numCourses3, prerequisites3)
-//
-//    for (value in arr3) {
-//        println(value)
-//    }
+    val arr3 = solution.findOrder(numCourses3, prerequisites3)
+    println(arr3.contentToString())
 }
