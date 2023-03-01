@@ -2,7 +2,6 @@ package leetcode.graph
 
 import java.util.*
 
-
 fun orangesRotting(grid: Array<IntArray>): Int {
     if (grid.isEmpty()) {
         return -1
@@ -11,7 +10,7 @@ fun orangesRotting(grid: Array<IntArray>): Int {
     val height = grid.size
     val width = grid[0].size
 
-    val bfsQueue = LinkedList<Triple<Int, Int, Int>>();
+    val bfsQueue = LinkedList<Triple<Int, Int, Int>>()
     val visited = mutableSetOf<Pair<Int, Int>>()
     var totalOranges = 0
     var maxDistance = 0

@@ -43,8 +43,11 @@ class CourseScheduleKahnAlgorithm {
             result.add(curNode)
         }
 
-        return if (result.size == numCourses) result.toIntArray() else
+        return if (result.size == numCourses) {
+            result.toIntArray()
+        } else {
             IntArray(0)
+        }
     }
 }
 
@@ -54,13 +57,16 @@ fun main() {
 
     val numCourses2 = 4
     val prerequisites2 = arrayOf(
-        intArrayOf(1, 0), intArrayOf(2, 0),
-        intArrayOf(3, 1), intArrayOf(3, 2)
+        intArrayOf(1, 0),
+        intArrayOf(2, 0),
+        intArrayOf(3, 1),
+        intArrayOf(3, 2),
     )
 
     val numCourses3 = 3
     val prerequisites3 = arrayOf(
-        intArrayOf(2, 0), intArrayOf(2, 1),
+        intArrayOf(2, 0),
+        intArrayOf(2, 1),
     )
 
     val solution = CourseScheduleKahnAlgorithm()
@@ -70,7 +76,6 @@ fun main() {
 
     val arr2 = solution.findOrder(numCourses2, prerequisites2)
     println(arr2.contentToString())
-
 
     val arr3 = solution.findOrder(numCourses3, prerequisites3)
     println(arr3.contentToString())

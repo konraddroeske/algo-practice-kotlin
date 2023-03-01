@@ -1,13 +1,12 @@
 package leetcode.graph
 
-
 class PacificAtlantic {
     private fun dfs(
         heights: Array<IntArray>,
         row: Int,
         col: Int,
         visited: MutableSet<Pair<Int, Int>>,
-        prevHeight: Int
+        prevHeight: Int,
     ) {
         // check if in bounds
         if (row !in heights.indices || col !in heights[0].indices) {
@@ -56,7 +55,6 @@ class PacificAtlantic {
             listOf(it.first, it.second)
         }
     }
-
 }
 
 fun main() {
