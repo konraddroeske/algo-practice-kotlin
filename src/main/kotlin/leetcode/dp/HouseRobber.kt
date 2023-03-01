@@ -13,8 +13,6 @@ class HouseRobber {
             resultArr[index] = maxOf(case1, case2)
         }
 
-        println(resultArr.contentToString())
-
         return resultArr[nums.size - 1]
     }
 }
