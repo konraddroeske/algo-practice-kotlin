@@ -1,4 +1,3 @@
-import java.util.*
 
 class LongestSubstringWithoutRepeats {
     fun lengthOfLongestSubstring(s: String): Int {
