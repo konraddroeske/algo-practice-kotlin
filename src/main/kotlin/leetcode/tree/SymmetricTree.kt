@@ -1,12 +1,7 @@
 
 class SymmetricTree {
     fun isSymmetric(root: TreeNode?): Boolean {
-        if (root == null) return true
-        if (root.left == null && root.right == null) return true
-        if (root.left == null || root.right == null) return false
-
-        // traverse left and right and ensure equal
-        return isSameTree(root.left, root.right)
+        return isSameTree(root?.left, root?.right)
     }
 
     private fun isSameTree(left: TreeNode?, right: TreeNode?): Boolean {
