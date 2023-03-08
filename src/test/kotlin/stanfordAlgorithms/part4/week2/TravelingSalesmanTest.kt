@@ -19,7 +19,7 @@ class TravelingSalesmanTest {
 
     @Test
     fun getMinimumCost() {
-        val result = solution.getMininumCost()
+        val result = solution.getMinimumCost()
 
         assertEquals(40.0, result)
     }

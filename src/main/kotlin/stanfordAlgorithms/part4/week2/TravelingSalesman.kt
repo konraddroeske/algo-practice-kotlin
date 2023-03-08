@@ -44,7 +44,7 @@ class TravelingSalesman {
         return sqrt((x - z).pow(2) + (y - w).pow(2))
     }
 
-    fun getSubsets(setSize: Int): Map<Int, List<IntArray>> {
+    private fun getSubsets(setSize: Int): Map<Int, List<IntArray>> {
         val values = IntArray(setSize - 1) { it + 2 }
         val result = mutableListOf(intArrayOf(1))
 
@@ -56,7 +56,7 @@ class TravelingSalesman {
         return result.groupBy { it.size }
     }
 
-    fun getDistances(locations: List<Pair<Double, Double>>): Array<DoubleArray> {
+    private fun getDistances(locations: List<Pair<Double, Double>>): Array<DoubleArray> {
         val distances = Array(locations.size) { DoubleArray(locations.size) }
 
         for ((rowIndex, start) in distances.withIndex()) {
@@ -68,7 +68,7 @@ class TravelingSalesman {
         return distances
     }
 
-    fun getMininumCost(locations: List<Pair<Double, Double>>): Double {
+    fun getMinimumCost(locations: List<Pair<Double, Double>>): Double {
         val subsetsMap = getSubsets(locations.size)
         val costsMap = HashMap<String, DoubleArray>().withDefault {
             DoubleArray(locations.size) { Double.POSITIVE_INFINITY }
@@ -150,10 +150,10 @@ fun main() {
     val firstHalf = locationsFinal.slice(IntRange(0, 12))
     val secondHalf = locationsFinal.slice(IntRange(11, 24))
 
-    val resultFirstHalf = solution.getMininumCost(firstHalf)
+    val resultFirstHalf = solution.getMinimumCost(firstHalf)
     println("first half: $resultFirstHalf")
 
-    val resultSecondHalf = solution.getMininumCost(secondHalf)
+    val resultSecondHalf = solution.getMinimumCost(secondHalf)
     println("second half: $resultSecondHalf")
 
     val sharedDistance = solution.calculateDistance(
