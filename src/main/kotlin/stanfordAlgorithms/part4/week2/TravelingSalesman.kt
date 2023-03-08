@@ -117,10 +117,6 @@ class TravelingSalesman {
             }
         }
 
-        for (subset in subsetsMap.getValue(locations.size)) {
-            println(subset.joinToString(""))
-        }
-
         val finalCosts = costsMap.getValue(
             IntArray(locations.size) { it + 1 }.joinToString(""),
         )
