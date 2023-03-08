@@ -79,7 +79,7 @@ class TravelingSalesman {
         val baseSubsets = subsetsMap.getValue(1)
 
         for (subset in baseSubsets) {
-            val subsetString = subset.joinToString("")
+            val subsetString = subset.joinToString()
             costsMap[subsetString] = costsMap.getValue(subsetString)
 
             if (subset.contentEquals(intArrayOf(1))) {
@@ -92,14 +92,14 @@ class TravelingSalesman {
             val prevSubsets = subsetsMap.getValue(subProblemSize - 1)
 
             for (curSubset in curSubsets) {
-                val curCosts = costsMap.getValue(curSubset.joinToString(""))
-                costsMap[curSubset.joinToString("")] = curCosts
+                val curCosts = costsMap.getValue(curSubset.joinToString())
+                costsMap[curSubset.joinToString()] = curCosts
 
                 for (curLocation in curSubset) {
                     if (curLocation == 1) continue
 
                     val prevSubset = curSubset.filter { it != curLocation }.toIntArray()
-                    val prevCosts = costsMap.getValue(prevSubset.joinToString(""))
+                    val prevCosts = costsMap.getValue(prevSubset.joinToString())
 
                     for ((lastLocation, prevCost) in prevCosts.withIndex()) {
                         if (prevCost == Double.POSITIVE_INFINITY) {
@@ -113,12 +113,12 @@ class TravelingSalesman {
             }
 
             for (prevSubset in prevSubsets) {
-                costsMap.remove(prevSubset.joinToString(""))
+                costsMap.remove(prevSubset.joinToString())
             }
         }
 
         val finalCosts = costsMap.getValue(
-            IntArray(locations.size) { it + 1 }.joinToString(""),
+            IntArray(locations.size) { it + 1 }.joinToString(),
         )
 
         var result = Double.POSITIVE_INFINITY
@@ -161,4 +161,7 @@ fun main() {
     val final = resultFirstHalf + resultSecondHalf - (2 * sharedDistance)
 
     println("final: $final")
+
+    val fullFinal = solution.getMinimumCost(locationsFinal)
+    println("full final: $fullFinal")
 }
