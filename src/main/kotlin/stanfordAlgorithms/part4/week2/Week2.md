@@ -237,8 +237,8 @@
   remember the identities of vertices visited in a sub-problem.
 	- but not the order in which they're visited
 
-- Sub-problems: For every destination j is element of {1, 2, ..., n}, every
-  subset S is subset of {1, 2, ..., n} that contains 1 and j, let:
+- Sub-problems: For every destination j in {1, 2, ..., n}, every
+  subset S of {1, 2, ..., n} that contains 1 and j, let:
 	- L_s,j = minimum length of a path from 1 to j that visits precisely
 	  the vertices of S [exactly once each]
 
@@ -250,7 +250,7 @@
 		- Proof: straightforward "cut + paste"
 
 - Corresponding Recurrence:
-	- L_s,j = min (k in S, k != j) { L_s-{j},k + C_kj }
+	- L_s,j = min (k in S, k != j) { L_s-{j}, k + C_kj }
 	- "size" of sub-problem = | S |
 
 - Dynamic Programming Algorithm:
