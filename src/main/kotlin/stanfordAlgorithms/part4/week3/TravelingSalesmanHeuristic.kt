@@ -83,8 +83,6 @@ class TravelingSalesmanHeuristic {
             if (nextLocation != null) {
                 totalDistance += minDistance
                 curLocation = nextLocation
-            } else {
-                break
             }
         }
 
