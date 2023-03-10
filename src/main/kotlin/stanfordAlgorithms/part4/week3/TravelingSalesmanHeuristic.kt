@@ -53,7 +53,7 @@ class TravelingSalesmanHeuristic {
         val locations = importDataset("tspInputHeuristic.txt")
 
         var curLocation = locations.first()
-        val locationsSet = importDataset("tspInputHeuristic.txt").toMutableSet()
+        val locationsSet = locations.toMutableSet()
 
         var totalDistance = 0.0
 
