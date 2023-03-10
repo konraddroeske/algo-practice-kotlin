@@ -5,7 +5,7 @@ import java.nio.file.Paths
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-fun importDataset(filename: String): List<Pair<Double, Double>> {
+fun importLocations(filename: String): List<Pair<Double, Double>> {
     val dir = Paths.get(
         "src",
         "main",
@@ -141,7 +141,7 @@ class TravelingSalesman {
 
 fun main() {
     val solution = TravelingSalesman()
-    val locationsFinal = importDataset("tspInput.txt")
+    val locationsFinal = importLocations("tspInput.txt")
 
     val firstHalf = locationsFinal.slice(IntRange(0, 12))
     val secondHalf = locationsFinal.slice(IntRange(11, 24))

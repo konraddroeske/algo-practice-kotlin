@@ -4,7 +4,7 @@ import java.nio.file.Paths
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-fun importDataset(filename: String): MutableList<Triple<Int, Double, Double>> {
+fun importLocationsHeuristic(filename: String): MutableList<Triple<Int, Double, Double>> {
     val dir = Paths.get(
         "src",
         "main",
@@ -50,7 +50,7 @@ class TravelingSalesmanHeuristic {
     }
 
     fun getMinimumCost(): Double {
-        val locations = importDataset("tspInputHeuristic.txt")
+        val locations = importLocationsHeuristic("tspInputHeuristic.txt")
 
         var curLocation = locations.first()
         val locationsSet = locations.toMutableSet()
