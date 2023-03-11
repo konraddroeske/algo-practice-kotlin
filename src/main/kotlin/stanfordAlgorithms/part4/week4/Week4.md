@@ -81,7 +81,7 @@
 - Question #1: how to pick initial solution x?
 	- Answer #1:
 		- Use a random solution
-		- Run many independent trials of local search, return teh best locally
+		- Run many independent trials of local search, return the best locally
 		  optimal solution found.
 	- Answer #2:
 		- use your best heuristics
