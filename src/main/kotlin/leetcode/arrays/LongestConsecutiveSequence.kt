@@ -1,7 +1,7 @@
 
 class LongestConsecutiveSequence {
     fun longestConsecutive(nums: IntArray): Int {
-        val set = mutableSetOf<Int>()
+        val set = HashSet<Int>()
         for (num in nums) set.add(num)
 
         var result = 0
