@@ -1,4 +1,4 @@
-
+package leetcode.stack
 
 class LargestRectangleInHistogram {
     fun largestRectangleArea(heights: IntArray): Int {

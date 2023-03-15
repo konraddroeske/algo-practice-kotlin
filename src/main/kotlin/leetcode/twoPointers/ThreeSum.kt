@@ -1,4 +1,4 @@
-
+package leetcode.twoPointers
 class ThreeSum {
     fun threeSum(nums: IntArray): List<List<Int>> {
         nums.sort()

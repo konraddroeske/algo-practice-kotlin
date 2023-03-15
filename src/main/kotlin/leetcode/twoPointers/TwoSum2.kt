@@ -1,4 +1,4 @@
-
+package leetcode.twoPointers
 class TwoSum2 {
     fun twoSum(numbers: IntArray, target: Int): IntArray {
         val result = HashMap<Int, Int>()

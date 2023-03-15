@@ -1,3 +1,5 @@
+package leetcode.twoPointers
+
 class ValidPalindrome {
     fun isPalindrome(s: String): Boolean {
         val result = StringBuilder()
