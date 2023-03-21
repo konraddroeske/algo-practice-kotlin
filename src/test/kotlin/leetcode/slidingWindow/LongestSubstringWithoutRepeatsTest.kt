@@ -27,4 +27,32 @@ class LongestSubstringWithoutRepeatsTest {
         val expected = 5
         assertEquals(expected, solution.lengthOfLongestSubstring(input))
     }
+
+    @Test
+    fun testLengthOfLongestSubstring4() {
+        val input = ""
+        val expected = 0
+        assertEquals(expected, solution.lengthOfLongestSubstring(input))
+    }
+
+    @Test
+    fun testLengthOfLongestSubstring5() {
+        val input = " "
+        val expected = 1
+        assertEquals(expected, solution.lengthOfLongestSubstring(input))
+    }
+
+    @Test
+    fun testLengthOfLongestSubstring6() {
+        val input = "au"
+        val expected = 2
+        assertEquals(expected, solution.lengthOfLongestSubstring(input))
+    }
+
+    @Test
+    fun testLengthOfLongestSubstring7() {
+        val input = "dvdf"
+        val expected = 3
+        assertEquals(expected, solution.lengthOfLongestSubstring(input))
+    }
 }
