@@ -1,6 +1,5 @@
 package leetcode.slidingWindow
 
-import LongestSubstringWithoutRepeats
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

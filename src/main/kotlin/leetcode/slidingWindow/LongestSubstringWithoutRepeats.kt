@@ -1,4 +1,4 @@
-
+package leetcode.slidingWindow
 class LongestSubstringWithoutRepeats {
     fun lengthOfLongestSubstring(s: String): Int {
         val repeats = HashSet<Char>()
