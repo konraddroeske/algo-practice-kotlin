@@ -1,62 +1,58 @@
 
-import kotlin.collections.HashMap
 
 class MinimumWindowSubstring {
-    fun minWindow(s: String, t: String): String {
-        if (s.isEmpty() || t.isEmpty()) return ""
+    private val diff = 'A'.toInt()
+    private fun canRemove(
+        leftIndex: Int,
+        s: String,
+        tCounter: IntArray,
+        sCounter: IntArray,
+    ): Boolean {
+        val leftChar = s[leftIndex]
 
-        val tCounter = HashMap<Char, Int>().withDefault { 0 }
-        val windowCounter = HashMap<Char, Int>().withDefault { 0 }
+        return sCounter[leftChar.toInt() - diff] > tCounter[leftChar.toInt() - diff]
+    }
+
+    fun minWindow(s: String, t: String): String {
+        val arrLength = 'z'.toInt() - diff + 1
+        val sCounter = IntArray(arrLength)
+        val tCounter = IntArray(arrLength)
+        var matched = 0
+
+        var leftIndex = 0
+        var minWindow = ""
 
         for (char in t) {
-            tCounter[char] = tCounter.getValue(char) + 1
+            tCounter[char.toInt() - diff] += 1
         }
 
-        val required = tCounter.size
-        var isFormed = 0
+        for ((rightIndex, char) in s.withIndex()) {
+            sCounter[char.toInt() - diff] += 1
 
-        var left = 0
-        var right = 0
-        var results = Triple(Int.MAX_VALUE, 0, 0)
+            if (sCounter[char.toInt() - diff] <= tCounter[char.toInt() - diff]) {
+                matched += 1
+            }
 
-        while (right < s.length) {
-            val rightChar = s[right]
-            windowCounter[rightChar] = windowCounter.getValue(rightChar) + 1
+            if (matched != t.length) {
+                continue
+            }
 
-            if (tCounter.containsKey(rightChar) &&
-                tCounter.getValue(rightChar) == windowCounter.getValue(rightChar)
+            while (canRemove(leftIndex, s, tCounter, sCounter)) {
+                val leftChar = s[leftIndex]
+                sCounter[leftChar.toInt() - diff] -= 1
+                leftIndex += 1
+
+                if (sCounter[leftChar.toInt() - diff] < tCounter[leftChar.toInt() - diff]) {
+                    matched -= 1
+                }
+            }
+
+            if (minWindow.isEmpty() || rightIndex - leftIndex + 1 < minWindow.length
             ) {
-                isFormed += 1
+                minWindow = s.substring(leftIndex..rightIndex)
             }
-
-            while (left <= right && isFormed == required) {
-                val leftChar = s[left]
-
-                if (right - left + 1 < results.first) {
-                    results = Triple(right - left + 1, left, right)
-                }
-
-                windowCounter[leftChar] = windowCounter.getValue(leftChar) - 1
-
-                if (tCounter.containsKey(leftChar) &&
-                    windowCounter.getValue(leftChar) < tCounter.getValue(leftChar)
-                ) {
-                    isFormed -= 1
-                }
-
-                left += 1
-            }
-
-            right += 1
         }
 
-        return if (results.first == Int.MAX_VALUE) {
-            ""
-        } else {
-            s.slice(
-                IntRange
-                (results.second, results.third),
-            )
-        }
+        return minWindow
     }
 }
