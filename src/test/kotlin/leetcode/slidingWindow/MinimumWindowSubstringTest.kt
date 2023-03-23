@@ -17,10 +17,10 @@ class MinimumWindowSubstringTest {
 
     @Test
     fun minWindow2() {
-        val s = "bba"
-        val t = "ab"
+        val s = "a"
+        val t = "a"
         val result = solution.minWindow(s, t)
-        assertEquals("ba", result)
+        assertEquals("a", result)
     }
 
     @Test

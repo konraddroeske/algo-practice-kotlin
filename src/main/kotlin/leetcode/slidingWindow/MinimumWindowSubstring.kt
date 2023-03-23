@@ -20,7 +20,7 @@ class MinimumWindowSubstring {
         var matched = 0
 
         var leftIndex = 0
-        var minWindow = ""
+        var minWindow = Pair(-1, -1)
 
         for (char in t) {
             tCounter[char.toInt() - diff] += 1
@@ -47,12 +47,17 @@ class MinimumWindowSubstring {
                 }
             }
 
-            if (minWindow.isEmpty() || rightIndex - leftIndex + 1 < minWindow.length
+            val minWindowLength = minWindow.second - minWindow.first
+
+            if (minWindow.first == -1 || rightIndex - leftIndex <
+                minWindowLength
             ) {
-                minWindow = s.substring(leftIndex..rightIndex)
+                minWindow = Pair(leftIndex, rightIndex)
             }
         }
 
-        return minWindow
+        if (minWindow.first == -1) return ""
+
+        return s.substring(minWindow.first..minWindow.second)
     }
 }
