@@ -18,8 +18,6 @@ class LRUCache(capacity: Int) {
 
     fun get(key: Int): Int {
         val node = cache[key] ?: return -1
-
-        // add to head
         addToHead(node)
 
         return node.value
