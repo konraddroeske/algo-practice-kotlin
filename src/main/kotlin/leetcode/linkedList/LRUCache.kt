@@ -1,15 +1,15 @@
 package leetcode.linkedList
 
-class LRUNode(var key: Int, var value: Int) {
-    var next: LRUNode? = null
-    var prev: LRUNode? = null
-}
-
 class LRUCache(capacity: Int) {
+    class Node(var key: Int, var value: Int) {
+        var next: Node? = null
+        var prev: Node? = null
+    }
+
     private val maxCapacity = capacity
-    private val cache = HashMap<Int, LRUNode>()
-    private val head = LRUNode(-1, -1)
-    private val tail = LRUNode(-1, -1)
+    private val map = HashMap<Int, Node>()
+    private val head = Node(-1, -1)
+    private val tail = Node(-1, -1)
 
     init {
         head.next = tail
@@ -17,57 +17,45 @@ class LRUCache(capacity: Int) {
     }
 
     fun get(key: Int): Int {
-        val node = cache[key] ?: return -1
-        addToHead(node)
+        if (map.containsKey(key)) {
+            val node = map[key]
 
-        return node.value
+            removeNode(node)
+            addNode(node)
+
+            return node!!.value
+        }
+
+        return -1
     }
 
     fun put(key: Int, value: Int) {
-        val curNode = cache[key]
-
-        if (curNode != null) {
-            curNode.value = value
-            addToHead(curNode)
-            return
+        if (map.containsKey(key)) {
+            removeNode(map[key])
         }
 
-        val newNode = LRUNode(key, value)
-        cache[key] = newNode
-        addToHead(newNode)
+        val newNode = Node(key, value)
+        map[key] = newNode
+        addNode(newNode)
 
-        if (cache.size > maxCapacity) {
-            cache.remove(tail.prev?.key)
-            removeTail()
+        if (map.size > maxCapacity) {
+            map.remove(tail.prev?.key)
+            removeNode(tail.prev)
         }
     }
 
-    private fun addToHead(newNode: LRUNode) {
-        removeFromList(newNode.key)
+    private fun addNode(curNode: Node?) {
+        val nextTemp = head.next
 
-        val tempNode = head.next
+        head.next = curNode
+        curNode?.prev = head
 
-        head.next = newNode
-        newNode.prev = head
-
-        newNode.next = tempNode
-        tempNode?.prev = newNode
+        curNode?.next = nextTemp
+        nextTemp?.prev = curNode
     }
 
-    private fun removeTail() {
-        val prevTemp = tail.prev?.prev
-
-        prevTemp?.next = tail
-        tail.prev = prevTemp
-    }
-
-    private fun removeFromList(key: Int) {
-        val curNode = cache[key]
-
-        val prevTemp = curNode?.prev
-        val nextTemp = curNode?.next
-
-        prevTemp?.next = nextTemp
-        nextTemp?.prev = prevTemp
+    private fun removeNode(curNode: Node?) {
+        curNode?.prev?.next = curNode?.next
+        curNode?.next?.prev = curNode?.prev
     }
 }
