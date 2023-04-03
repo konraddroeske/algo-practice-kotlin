@@ -1,3 +1,5 @@
+package leetcode.tree
+
 class TreeNode(
     var `val`: Int,
     var left: TreeNode? = null,

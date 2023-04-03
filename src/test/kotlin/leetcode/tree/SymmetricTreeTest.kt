@@ -1,7 +1,6 @@
 package leetcode.tree
 
 import SymmetricTree
-import TreeNode
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 

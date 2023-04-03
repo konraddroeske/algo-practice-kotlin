@@ -1,3 +1,4 @@
+import leetcode.tree.TreeNode
 
 class SymmetricTree {
     fun isSymmetric(root: TreeNode?): Boolean {
