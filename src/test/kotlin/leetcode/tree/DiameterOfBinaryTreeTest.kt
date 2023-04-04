@@ -14,7 +14,7 @@ class DiameterOfBinaryTreeTest {
             TreeNode(3, TreeNode(6)),
         )
 
-        val result = solution.diameterOfBinaryTree(root)
+        val result = solution.getDiameter(root)
 
         assertEquals(5, result)
     }

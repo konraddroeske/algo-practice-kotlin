@@ -1,7 +1,7 @@
 package leetcode.tree
 
 class DiameterOfBinaryTree {
-    fun diameterOfBinaryTree(root: TreeNode?): Int {
+    fun getDiameter(root: TreeNode?): Int {
         var result = 0
 
         fun dfs(root: TreeNode?): Int {
