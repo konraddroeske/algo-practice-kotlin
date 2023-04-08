@@ -1,8 +1,8 @@
 package leetcode.tree
 
 class ConstructBinaryTree {
-    val inorderHash = HashMap<Int, Int>()
-    var rootIndex = 0
+    private val inorderHash = HashMap<Int, Int>()
+    private var rootIndex = 0
     fun buildTree(preorder: IntArray, inorder: IntArray): TreeNode? {
         // with hashmap
         inorder.forEachIndexed { index, i ->
@@ -22,10 +22,9 @@ class ConstructBinaryTree {
         }
 
         val rootVal = preorder[rootIndex]
-        val root = TreeNode(rootVal)
-
         rootIndex += 1
 
+        val root = TreeNode(rootVal)
         val mid = inorderHash[rootVal]!!
 
         root.left = dfs(preorder, inorderLeft, mid - 1)
