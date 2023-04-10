@@ -12,6 +12,7 @@ class SerializeBinaryTree {
 
         return "$rootVal,$left,$right"
     }
+
     fun deserialize(data: String): TreeNode? {
         val arr = data.split(",").toMutableList()
 
