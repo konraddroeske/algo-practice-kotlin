@@ -1,10 +1,10 @@
 package leetcode.backtracking
 
 class NQueens {
-    val cols = mutableSetOf<Int>()
-    val posDiag = mutableSetOf<Int>()
-    val negDiag = mutableSetOf<Int>()
-    val results = mutableListOf<List<String>>()
+    private val cols = mutableSetOf<Int>()
+    private val posDiag = mutableSetOf<Int>()
+    private val negDiag = mutableSetOf<Int>()
+    private val results = mutableListOf<List<String>>()
     fun solveNQueens(n: Int): List<List<String>> {
         val board = Array(n) { StringBuilder(".".repeat(n)) }
         backtracking(0, board, n)
@@ -40,3 +40,5 @@ class NQueens {
         }
     }
 }
+
+// Time Complexity - O(N!)
