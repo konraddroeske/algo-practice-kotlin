@@ -2,22 +2,17 @@ package leetcode.dp
 
 class MaximumProductSubarray {
     fun maxProduct(nums: IntArray): Int {
-        var result = Int.MIN_VALUE
-        var curMax = 1
-        var curMin = 1
+        var curMax = nums[0]
+        var curMin = nums[0]
+        var result = curMax
 
-        for (num in nums) {
-            if (num == 0) {
-                curMax = 1
-                curMin = 1
-                result = maxOf(result, num)
-            } else {
-                val tempMax = num * curMax
+        for (index in 1 until nums.size) {
+            val num = nums[index]
+            val tempMax = num * curMax
 
-                curMax = maxOf(num, tempMax, num * curMin)
-                curMin = minOf(num, tempMax, num * curMin)
-                result = maxOf(result, curMax)
-            }
+            curMax = maxOf(num, tempMax, num * curMin)
+            curMin = minOf(num, tempMax, num * curMin)
+            result = maxOf(result, curMax)
         }
 
         return result
