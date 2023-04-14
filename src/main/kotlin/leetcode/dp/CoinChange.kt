@@ -7,7 +7,7 @@ class CoinChange {
 
         for (index in 1..amount) {
             for (coin in coins) {
-                if (index - coin >= 0) {
+                if (coin <= index) {
                     val prevCount = arr[index - coin]
 
                     if (prevCount != Int.MAX_VALUE) {
