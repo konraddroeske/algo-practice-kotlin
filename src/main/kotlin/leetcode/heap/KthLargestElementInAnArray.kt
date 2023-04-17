@@ -12,26 +12,18 @@ class KthLargestElementInAnArray {
 
         for (index in left until right) {
             if (nums[index] <= pivotValue) {
-                val temp = nums[pointer]
-                nums[pointer] = nums[index]
-                nums[index] = temp
+                nums[pointer] = nums[index].apply { nums[index] = nums[pointer] }
                 pointer += 1
             }
         }
 
-        val temp = nums[pointer]
-        nums[pointer] = pivotValue
-        nums[right] = temp
+        nums[pointer] = nums[right].apply { nums[right] = nums[pointer] }
 
-        if (pointer > k) {
-            return quickSelect(left, pointer - 1, nums, k)
+        return when {
+            pointer > k -> quickSelect(left, pointer - 1, nums, k)
+            pointer < k -> quickSelect(pointer + 1, right, nums, k)
+            else -> nums[pointer]
         }
-
-        if (pointer < k) {
-            return quickSelect(pointer + 1, right, nums, k)
-        }
-
-        return nums[pointer]
     }
 }
 
