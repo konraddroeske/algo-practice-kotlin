@@ -1,5 +1,6 @@
 package leetcode.graph
 
+// Time - O(rows * cols)
 class MaxAreaOfIsland {
     fun getMaxAreaOfIsland(grid: Array<IntArray>): Int {
         val rows = grid.size

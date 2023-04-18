@@ -1,5 +1,6 @@
 package leetcode.graph
 
+// Time - O(n)
 class CloneGraph {
     private val cloneMap = HashMap<Int, Node>()
     fun getCloneGraph(node: Node?): Node? {
