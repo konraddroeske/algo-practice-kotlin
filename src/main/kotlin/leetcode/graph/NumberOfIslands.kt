@@ -25,13 +25,9 @@ class NumberOfIslands {
         rows: Int,
         cols: Int,
     ) {
-        if (row < 0 || row >= rows || col < 0 || col >= cols) {
-            return
-        }
-
-        val cur = grid[row][col]
-
-        if (cur == '0') {
+        if (row < 0 || row >= rows || col < 0 || col >= cols ||
+            grid[row][col] == '0'
+        ) {
             return
         }
 
