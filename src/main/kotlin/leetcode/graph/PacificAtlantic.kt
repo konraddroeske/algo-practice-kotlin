@@ -1,74 +1,51 @@
 package leetcode.graph
 
+// Time - O(rows * cols)
 class PacificAtlantic {
-    private fun dfs(
-        heights: Array<IntArray>,
-        row: Int,
-        col: Int,
-        visited: MutableSet<Pair<Int, Int>>,
-        prevHeight: Int,
-    ) {
-        // check if in bounds
-        if (row !in heights.indices || col !in heights[0].indices) {
-            return
-        }
-
-        // check if already visited
-        if (Pair(row, col) in visited) {
-            return
-        }
-
-        // check if height if cur height is larger than prev height
-        val curHeight = heights[row][col]
-
-        if (curHeight < prevHeight) {
-            return
-        }
-
-        visited.add(Pair(row, col))
-
-        // dfs for all directions
-        dfs(heights, row + 1, col, visited, curHeight)
-        dfs(heights, row - 1, col, visited, curHeight)
-        dfs(heights, row, col + 1, visited, curHeight)
-        dfs(heights, row, col - 1, visited, curHeight)
-    }
-
-    fun pacificAtlantic(heights: Array<IntArray>): List<List<Int>> {
+    fun getPacificAtlantic(heights: Array<IntArray>): List<List<Int>> {
         val rows = heights.size
         val cols = heights[0].size
 
-        val pacificVisited = mutableSetOf<Pair<Int, Int>>()
-        val atlanticVisited = mutableSetOf<Pair<Int, Int>>()
+        val pacific = mutableSetOf<List<Int>>()
+        val atlantic = mutableSetOf<List<Int>>()
 
-        for (row in heights.indices) {
-            dfs(heights, row, 0, pacificVisited, heights[row][0])
-            dfs(heights, row, cols - 1, atlanticVisited, heights[row][cols - 1])
+        for (row in 0 until rows) {
+            dfs(0, row, 0, pacific, heights, rows, cols)
+            dfs(0, row, heights[0].size - 1, atlantic, heights, rows, cols)
         }
 
-        for (col in heights[0].indices) {
-            dfs(heights, 0, col, pacificVisited, heights[0][col])
-            dfs(heights, rows - 1, col, atlanticVisited, heights[rows - 1][col])
+        for (col in 0 until cols) {
+            dfs(0, 0, col, pacific, heights, rows, cols)
+            dfs(0, heights.size - 1, col, atlantic, heights, rows, cols)
         }
 
-        return (pacificVisited intersect atlanticVisited).map {
-            listOf(it.first, it.second)
-        }
+        return pacific.intersect(atlantic).toList()
     }
-}
 
-fun main() {
-    val heights = arrayOf(
-        intArrayOf(1, 2, 2, 3, 5),
-        intArrayOf(3, 2, 3, 4, 4),
-        intArrayOf(2, 4, 5, 3, 1),
-        intArrayOf(6, 7, 1, 4, 5),
-        intArrayOf(5, 1, 1, 2, 4),
-    )
+    fun dfs(
+        prevHeight: Int,
+        row: Int,
+        col: Int,
+        visited: MutableSet<List<Int>>,
+        heights: Array<IntArray>,
+        rows: Int,
+        cols: Int,
+    ) {
+        val isOutOfBounds = row < 0 || row >= rows || col < 0 || col >= cols
 
-    val solution = PacificAtlantic()
+        if (isOutOfBounds ||
+            visited.contains(listOf(row, col)) ||
+            prevHeight > heights[row][col]
+        ) {
+            return
+        }
 
-    val result = solution.pacificAtlantic(heights)
+        visited.add(listOf(row, col))
+        val curHeight = heights[row][col]
 
-    println(result)
+        dfs(curHeight, row + 1, col, visited, heights, rows, cols)
+        dfs(curHeight, row - 1, col, visited, heights, rows, cols)
+        dfs(curHeight, row, col + 1, visited, heights, rows, cols)
+        dfs(curHeight, row, col - 1, visited, heights, rows, cols)
+    }
 }
