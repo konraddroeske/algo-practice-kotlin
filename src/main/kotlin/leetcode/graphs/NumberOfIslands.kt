@@ -1,4 +1,4 @@
-package leetcode.graph
+package leetcode.graphs
 
 class NumberOfIslands {
     fun numIslands(grid: Array<CharArray>): Int {

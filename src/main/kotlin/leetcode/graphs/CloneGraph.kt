@@ -1,4 +1,4 @@
-package leetcode.graph
+package leetcode.graphs
 
 // Time - O(n)
 class CloneGraph {

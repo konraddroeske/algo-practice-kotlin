@@ -1,4 +1,4 @@
-package leetcode.graph
+package leetcode.graphs
 
 // Time - O (rows * cols)
 class RottingOranges {
