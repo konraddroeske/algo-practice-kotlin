@@ -12,7 +12,7 @@ class NonOverlappingIntervals {
         for (index in 1 until intervals.size) {
             val cur = intervals[index]
 
-            if (cur[0] < prev[1]) {
+            if (prev[1] > cur[0]) {
                 continue
             }
 
